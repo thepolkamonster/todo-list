@@ -1,0 +1,9 @@
+flask
+python-dotenv
+Flask-Smorest
+Flask-Sqlalchemy
+Flask-Migrate
+Flask-WTF
+marshmallow
+requests
+pytest
