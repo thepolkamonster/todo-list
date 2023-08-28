@@ -14,3 +14,4 @@ class Task(FlaskForm):
 class TaskDel(FlaskForm):
     task_id = IntegerField()
     delete = SubmitField("Delete")
+    undo = SubmitField("Undo")

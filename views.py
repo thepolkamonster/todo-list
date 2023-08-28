@@ -40,12 +40,19 @@ def index():
 @blp.route('/finished', methods = ["GET","POST"])
 def finished():
     taskdel = TaskDel()
-    
     if taskdel.validate_on_submit():
-        id_req = taskdel.task_id.data
-        task = FinishedTaskModel.query.get(id_req)
-        db.session.delete(task)
-        db.session.commit()
+        if taskdel.delete.data == True:
+            id_req = taskdel.task_id.data
+            task = FinishedTaskModel.query.get(id_req)
+            db.session.delete(task)
+            db.session.commit()
+        elif taskdel.undo.data == True:
+            id_req = taskdel.task_id.data
+            task = FinishedTaskModel.query.get(id_req)
+            pend_task = TaskModel(task.desc)
+            db.session.delete(task)
+            db.session.add(pend_task)
+            db.session.commit()
         return redirect(url_for('views.finished'))
     
     all_tasks = FinishedTaskModel.query.all()
