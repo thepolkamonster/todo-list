@@ -3,6 +3,7 @@ from flask_smorest import Api
 from flask_migrate import Migrate
 from db import db
 from views import blp as ViewsBlueprint
+from routes import blp as RoutesBlueprint
 def create_app():
     app = Flask(__name__)
     app.config["API_TITLE"] = "TO-DO List"
@@ -24,5 +25,6 @@ def create_app():
 
     api = Api(app)
     api.register_blueprint(ViewsBlueprint)
+    api.register_blueprint(RoutesBlueprint)
 
     return app
