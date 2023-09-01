@@ -14,3 +14,11 @@ class TaskRoute(MethodView):
     def get(self):
         res = TaskModel.query.all()
         return res
+    
+@blp.route("/api/finishedtasks")
+class FinishedTaskRoute(MethodView):
+    @blp.response(200, TaskSchema(many = True))
+    
+    def get(self):
+        res = FinishedTaskModel.query.all()
+        return res
