@@ -34,3 +34,14 @@ class FinishedTaskRoute(MethodView):
     def get(self):
         res = FinishedTaskModel.query.all()
         return res
+    
+@blp.route("/api/tasks/<string:id_req>")
+class TaskRouteId(MethodView):
+
+    @blp.response(200, TaskSchema)
+    def delete(self, id_req):
+        res = TaskModel.query.get_or_404(id_req)
+        db.session.delete(res)
+        db.session.commit()
+
+        return res
